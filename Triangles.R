@@ -8,9 +8,9 @@ library(gganimate)
 corn_A<-0
 corn_B<-50
 corn_C<-100
-start_x<-1
-start_y<-50
-its <- 100000
+start_x<-0
+start_y<-0
+its <- 12000
 new_point<-((start_x+corn_C)/2)
 
 y <- as.numeric(round(runif(its, min = 1, max = 3),0))
@@ -24,7 +24,7 @@ z<-as.data.frame(capture.output(for (val in y) {
   print(new_point)
 }))
 colnames(z) <- c("xvals")
-cleanz = as.data.frame(substring(z$xvals,5))
+cleanz = as.data.frame(as.numeric(substring(z$xvals,5)))
 colnames(cleanz)<- c("xvals")
 
 # Y values
@@ -43,7 +43,7 @@ p<-as.data.frame(capture.output(for (val in y) {
   print(new_point)
 }))
 colnames(p) <- c("yvals")
-cleanp<-as.data.frame(substring(p$yvals,5))
+cleanp<-as.data.frame(as.numeric(substring(p$yvals,5)))
 colnames(cleanp) <- c("yvals")
 
 
@@ -121,11 +121,11 @@ final<-as.data.frame(rbind(one,two,thr,four,five,six,sev,eig,nin,ten))
 fig <- final %>%
   plot_ly(
     x = ~xvals, 
-    y = ~yvals, 
+    y = ~yvals,
     frame = ~its, 
-    text = ~its, 
+    text = ~its,
     hoverinfo = "text",
     type = 'scatter',
     mode = 'markers',
-    marker = list(size = 2, color = "black"))
+    marker = list(size = 2.5, color = "black"))
 fig
