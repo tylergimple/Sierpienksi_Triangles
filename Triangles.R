@@ -2,6 +2,8 @@ library(stats)
 library(ggplot2)
 library(plotly)
 library(gganimate)
+library(png) 
+library(gifski)
 
 
 # X values
@@ -58,6 +60,13 @@ ggplot(data = graph, aes(x = xvals, y=yvals)) + geom_point(size=.1) +
         axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
+
+p <- ggplot(graph, aes(xvals, yvals)) +
+  geom_point(size=0.2) +
+  transition_time(index) +
+  shadow_mark()
+
+animate(p)
 
 
 plot_ly(data = graph, x = ~xvals, y = ~yvals, type = "scatter", mode = "markers", marker = list(size = 1, color = "red"))
