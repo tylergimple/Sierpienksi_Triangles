@@ -1,7 +1,6 @@
 library(stats)
 library(ggplot2)
 library(plotly)
-library(gganimate)
 library(png) 
 library(gifski)
 
@@ -10,9 +9,9 @@ library(gifski)
 corn_A<-0
 corn_B<-50
 corn_C<-100
-start_x<-0
-start_y<-0
-its <- 12000
+start_x<-50
+start_y<-20
+index <- its <- 10000
 new_point<-((start_x+corn_C)/2)
 
 y <- as.numeric(round(runif(its, min = 1, max = 3),0))
@@ -48,9 +47,9 @@ colnames(p) <- c("yvals")
 cleanp<-as.data.frame(as.numeric(substring(p$yvals,5)))
 colnames(cleanp) <- c("yvals")
 
-
-graph<-as.data.frame(cbind(cleanz,cleanp))
-colnames(graph) <- c("xvals", "yvals")
+index<-as.data.frame(seq(1:index))
+graph<-as.data.frame(cbind(cleanz,cleanp,index))
+colnames(graph) <- c("xvals", "yvals","index")
 
 
 ggplot(data = graph, aes(x = xvals, y=yvals)) + geom_point(size=.1) + 
@@ -67,6 +66,7 @@ p <- ggplot(graph, aes(xvals, yvals)) +
   shadow_mark()
 
 animate(p)
+
 
 
 plot_ly(data = graph, x = ~xvals, y = ~yvals, type = "scatter", mode = "markers", marker = list(size = 1, color = "red"))
