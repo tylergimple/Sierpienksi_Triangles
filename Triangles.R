@@ -60,6 +60,14 @@ ggplot(data = graph, aes(x = xvals, y=yvals)) + geom_point(size=.1) +
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
 
+bubbleplot2 <- plot_ly(graph, x = ~xvals, y = ~yvals,
+                       sizes = c(10, 50),
+                       marker =
+                         list(opacity = 0.7,
+                              sizemode = "diameter"), color = ~yvals, colors = 'Purples')
+bubbleplot2
+
+
 p <- ggplot(graph, aes(xvals, yvals)) +
   geom_point(size=0.2) +
   transition_time(index) +
