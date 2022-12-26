@@ -3,6 +3,7 @@ library(ggplot2)
 library(plotly)
 library(png) 
 library(gifski)
+library(gganimate)
 
 
 # X values
