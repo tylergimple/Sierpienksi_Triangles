@@ -70,11 +70,12 @@ bubbleplot2
 
 
 p <- ggplot(graph, aes(xvals, yvals)) +
-  geom_point(size=0.2) +
+  geom_point(size=4,color='red') +
   transition_time(index) +
-  shadow_mark()
+  shadow_mark(colour = 'black', size = 1)
 
-animate(p)
+
+animate(p,fps = 10, nframes = 2000)
 
 
 
